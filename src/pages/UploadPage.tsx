@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FiCamera, FiUpload } from 'react-icons/fi'
+import { FiCamera } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import { useImageStore } from '../store/imageStore'
 import DropZone from '../components/upload/DropZone'

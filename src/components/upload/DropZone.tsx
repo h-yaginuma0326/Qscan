@@ -31,8 +31,10 @@ const DropZone = ({ onImageSelected }: DropZoneProps) => {
         // Convert file to data URL
         const reader = new FileReader()
         reader.onload = (event) => {
-          if (!event.target?.result) {
+          const target = event.target;
+          if (!target || !target.result) {
             toast.error('画像の読み込みに失敗しました')
+            setIsLoading(false)
             return
           }
 
@@ -46,7 +48,7 @@ const DropZone = ({ onImageSelected }: DropZoneProps) => {
             }
 
             // Pass the image data URL and dimensions to the parent component
-            onImageSelected(event.target.result as string, { 
+            onImageSelected(target.result as string, { 
               width: img.width, 
               height: img.height 
             })
@@ -56,7 +58,7 @@ const DropZone = ({ onImageSelected }: DropZoneProps) => {
             toast.error('画像の解析に失敗しました')
             setIsLoading(false)
           }
-          img.src = event.target.result as string
+          img.src = target.result as string
         }
         reader.onerror = () => {
           toast.error('ファイルの読み込みに失敗しました')
